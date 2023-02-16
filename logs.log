@@ -34781,3 +34781,45 @@ THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib's team with an
  example so that they can fix the problem.
   X, y = pipeline._memory_transform(transformer, X, y)
 
+2023-02-16 10:18:43,233:WARNING:/home/moussa/anaconda3/envs/research/lib/python3.8/site-packages/pycaret/internal/pipeline.py:295: UserWarning: Persisting input arguments took 1.74s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib's team with an
+ example so that they can fix the problem.
+  X, _ = self._memory_full_transform(self, X, None, with_final=False)
+
+2023-02-16 10:18:44,324:WARNING:/home/moussa/anaconda3/envs/research/lib/python3.8/site-packages/pycaret/internal/pipeline.py:295: UserWarning: Persisting input arguments took 1.47s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib's team with an
+ example so that they can fix the problem.
+  X, _ = self._memory_full_transform(self, X, None, with_final=False)
+
+2023-02-16 10:18:47,049:INFO:Calculating mean and std
+2023-02-16 10:18:47,050:INFO:Creating metrics dataframe
+2023-02-16 10:18:47,053:INFO:Uploading results into container
+2023-02-16 10:18:47,054:INFO:Uploading model into container now
+2023-02-16 10:18:47,054:INFO:_master_model_container: 14
+2023-02-16 10:18:47,054:INFO:_display_container: 2
+2023-02-16 10:18:47,054:INFO:ExtraTreesRegressor(n_jobs=-1, random_state=11)
+2023-02-16 10:18:47,054:INFO:create_model() successfully completed......................................
+2023-02-16 10:18:47,208:INFO:SubProcess create_model() end ==================================
+2023-02-16 10:18:47,208:INFO:Creating metrics dataframe
+2023-02-16 10:18:47,216:INFO:Initializing AdaBoost Regressor
+2023-02-16 10:18:47,216:INFO:Total runtime is 6.40093960762024 minutes
+2023-02-16 10:18:47,218:INFO:SubProcess create_model() called ==================================
+2023-02-16 10:18:47,218:INFO:Initializing create_model()
+2023-02-16 10:18:47,218:INFO:create_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x7fe4cde66d30>, estimator=ada, fold=KFold(n_splits=10, random_state=None, shuffle=False), round=4, cross_validation=True, predict=True, fit_kwargs={}, groups=None, refit=False, probability_threshold=None, experiment_custom_tags=None, verbose=False, system=False, add_to_model_list=True, metrics=None, display=<pycaret.internal.display.display.CommonDisplay object at 0x7fe4cdab80a0>, model_only=True, return_train_score=False, kwargs={})
+2023-02-16 10:18:47,218:INFO:Checking exceptions
+2023-02-16 10:18:47,218:INFO:Importing libraries
+2023-02-16 10:18:47,218:INFO:Copying training dataset
+2023-02-16 10:18:47,298:INFO:Defining folds
+2023-02-16 10:18:47,298:INFO:Declaring metric variables
+2023-02-16 10:18:47,300:INFO:Importing untrained model
+2023-02-16 10:18:47,302:INFO:AdaBoost Regressor Imported successfully
+2023-02-16 10:18:47,305:INFO:Starting cross validation
+2023-02-16 10:18:47,309:INFO:Cross validating with KFold(n_splits=10, random_state=None, shuffle=False), n_jobs=-1
