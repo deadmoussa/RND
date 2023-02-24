@@ -23,6 +23,7 @@ def create_changePCT(df, shift, column, time):
     return df
     
 #%%
+data_start = datetime.now()
 amberdata = AmberData()
 now = datetime.now()
 start = dt.datetime(2018, 1, 1)
@@ -42,12 +43,13 @@ end = datetime.now()
 print('raw data', end-now)
 #futures_candle_df['close_forward24'] = futures_candle_df['close'].shift(-1)
 futures_candle_df['volume_24HR'] = futures_candle_df['volume'].rolling(24).sum()
-futures_candle_df['volume_24HR$'] = futures_candle_df['volume_24HR'].rolling(24).sum()*futures_candle_df['close']
-futures_candle_df['volume_$'] = futures_candle_df['volume'].rolling(24).sum()*futures_candle_df['close']
+# futures_candle_df['volume_24HR$'] = futures_candle_df['volume_24HR'].rolling(24).sum()*futures_candle_df['close']
+# futures_candle_df['volume_$'] = futures_candle_df['volume'].rolling(24).sum()*futures_candle_df['close']
 
 
 
-
+futures_candle_df['volume_$'] = futures_candle_df['volume']*futures_candle_df['close']
+futures_candle_df['volume_24HR$'] = futures_candle_df['volume_$'].rolling(24).sum()
 
 #make % changes on 24hrs
 #%%
@@ -73,35 +75,35 @@ futures_candle_df = create_changePCT(futures_candle_df, shift_df1hr, 'volume_24H
 futures_candle_df = create_changePCT(futures_candle_df, shift_df, 'volume', "1HR")
 futures_candle_df = create_changePCT(futures_candle_df, shift_df, 'volume_$', "1HR")
 #3hr raw feature changes
-# shift_df3hr = futures_candle_df.copy(deep=True).shift(3)
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "close", "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "open", "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "high", "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "low", "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_24HR', "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_24HR$', "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume', "3HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_$', "3HR")
-# #6hr raw feature changes
-# shift_df6hr = futures_candle_df.copy(deep=True).shift(6)
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "close", "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "open", "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "high", "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "low", "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_24HR', "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_24HR$', "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume', "6HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_$', "6HR")
-# #12hr raw feature changes
-# shift_df12hr = futures_candle_df.copy(deep=True).shift(12)
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "close", "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "open", "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "high", "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "low", "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_24HR', "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_24HR$', "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume', "12HR")
-# futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_$', "12HR")
+shift_df3hr = futures_candle_df.copy(deep=True).shift(3)
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "close", "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "open", "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "high", "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, "low", "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_24HR', "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_24HR$', "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume', "3HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df3hr, 'volume_$', "3HR")
+#6hr raw feature changes
+shift_df6hr = futures_candle_df.copy(deep=True).shift(6)
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "close", "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "open", "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "high", "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, "low", "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_24HR', "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_24HR$', "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume', "6HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df6hr, 'volume_$', "6HR")
+#12hr raw feature changes
+shift_df12hr = futures_candle_df.copy(deep=True).shift(12)
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "close", "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "open", "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "high", "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, "low", "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_24HR', "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_24HR$', "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume', "12HR")
+futures_candle_df = create_changePCT(futures_candle_df, shift_df12hr, 'volume_$', "12HR")
 #%%
 
 #for prediction 24hr ahead
@@ -120,7 +122,7 @@ futures_candle_df['lo_log'] = np.log(futures_candle_df["low"]/futures_candle_df[
 
 #%%
 #get EWM based on halflives
-day = '7D'
+day = '3D'
 futures_candle_df['close_ewm'+day] = futures_candle_df['close'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
 futures_candle_df['open_ewm'+day] = futures_candle_df['open'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
 futures_candle_df['high_ewm'+day] = futures_candle_df['high'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
@@ -135,6 +137,22 @@ futures_candle_df['volume_ewm'+day] = futures_candle_df['volume'].ewm(halflife='
 futures_candle_df['volume_24HR_ewm'+day] = futures_candle_df['volume_24HR'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
 futures_candle_df['volume_$_ewm'+day] = futures_candle_df['volume_$'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
 futures_candle_df['volume_24HR$_ewm'+day] = futures_candle_df['volume_24HR$'].ewm(halflife='7 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+
+day = '7D'
+futures_candle_df['close_ewm'+day] = futures_candle_df['close'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['open_ewm'+day] = futures_candle_df['open'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['high_ewm'+day] = futures_candle_df['high'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['low_ewm'+day] = futures_candle_df['low'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['hl_log_sqr_ewm'+day] = futures_candle_df['hl_log_sqr'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['co_log_sqr_ewm'+day] = futures_candle_df['co_log_sqr'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['hc_log_ewm'+day] = futures_candle_df['hc_log'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['ho_log_ewm'+day] = futures_candle_df['ho_log'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['lc_log_ewm'+day] = futures_candle_df['lc_log'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['lo_log_ewm'+day] = futures_candle_df['lo_log'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['volume_ewm'+day] = futures_candle_df['volume'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['volume_24HR_ewm'+day] = futures_candle_df['volume_24HR'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['volume_$_ewm'+day] = futures_candle_df['volume_$'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
+futures_candle_df['volume_24HR$_ewm'+day] = futures_candle_df['volume_24HR$'].ewm(halflife='3 days', times=pd.DatetimeIndex(futures_candle_df['dt'])).mean()
 
 
 
@@ -210,7 +228,7 @@ for col in futures_candle_df.columns:
             shift_df_temp = futures_candle_df.copy(deep=True).shift(s)
             futures_candle_df = create_changePCT(futures_candle_df, shift_df_temp, col, str(s)+"HR")   
  
-end2 = datetime.now()
+
 #%%get Add Lagged variables
 # lags = [1,6,12, 24]
 
@@ -221,24 +239,59 @@ end2 = datetime.now()
 
 futures_candle_df['closeChg%_forward24HR'] = futures_candle_df['closeChg%24HR'].shift(-24)
 futures_candle_df['closeChg%_forward1HR'] = futures_candle_df['closeChg%1HR'].shift(-1)
+#get up down or chop based on sdev
+std_24 = futures_candle_df['closeChg%_forward24HR'].std()
+std_1 = futures_candle_df['closeChg%_forward1HR'].std()
+for index, row in futures_candle_df.iterrows():
+    if abs(row['closeChg%_forward24HR'])>=  std_24:
+        if row['closeChg%_forward24HR'] > 0:
+            futures_candle_df.at[index,'UpDownPred24HR' ] =1
+        else:
+            futures_candle_df.at[index,'UpDownPred24HR' ] =-1
+    else:
+        futures_candle_df.at[index,'UpDownPred24HR' ] =0
+    if abs(row['closeChg%_forward1HR'])>=  std_1:
+        if row['closeChg%_forward1HR'] > 0:
+            futures_candle_df.at[index,'UpDownPred1HR' ] =1
+        else:
+            futures_candle_df.at[index,'UpDownPred1HR' ] =-1
+    else:
+        futures_candle_df.at[index,'UpDownPred1HR' ] =0
+
+
+
 futures_candle_df.dropna(inplace=True)
 futures_candle_df.reset_index(drop = True, inplace=True)  
 
 
+#%% classification 24hr
+start_class = datetime.now()
+from pycaret.classification import *
+number_columns = 100/(len(futures_candle_df.columns))
+exp_clf24 = setup(futures_candle_df,target='UpDownPred24HR',
+        ignore_features=['dt', 'exchange', 'timestamp', 'instrument', 'closeChg%_forward1HR', 'closeChg%_forward24HR', 'UpDownPred1HR'],session_id=11,
+        profile=False,  use_gpu=True,  normalize = True,  remove_multicollinearity=True, n_features_to_select=number_columns) 
+end_setup_class= datetime.now()
+models_class = compare_models(turbo=True, n_select =4)
+model_df_class = pull()
+best_models_class = model_df_class .iloc[0:4]
 
-
-
+end_class = datetime.now()
 
 #%% regression time using pycaret
 from pycaret.regression import *
-
-
+end2 = datetime.now()
+df_test = futures_candle_df[futures_candle_df['dt']> datetime(2022,12,1)]
+df_train = futures_candle_df[futures_candle_df['dt'] <= datetime(2022,12,1)] 
 bad_cols = ['dt', 'exchange', 'timestamp', 'instrument', 'closeChg%_forward1HR']
+#select 100 features
+number_columns = 100/(len(futures_candle_df.columns))
+a=setup(df_train,target='closeChg%_forward24HR',
+        ignore_features=['dt', 'exchange', 'timestamp', 'instrument', 'closeChg%_forward1HR',  'closeChg%_forward1HR', 'closeChg%_forward24HR', 'UpDownPred1HR'],session_id=11,
+        profile=False,  use_gpu=True,  normalize = True,  remove_multicollinearity=True, n_features_to_select=number_columns);
 
 
-a=setup(futures_candle_df,target='closeChg%_forward24HR',
-        ignore_features=['dt', 'exchange', 'timestamp', 'instrument', 'closeChg%_forward1HR'],session_id=11,
-        profile=False,  use_gpu=False,  normalize = True,  remove_multicollinearity=True);
+
 end_setup = datetime.now()
 #get best models
 models = compare_models(exclude = ['tr', 'lightgbm'],turbo=True, n_select =4)
@@ -250,7 +303,9 @@ best_models = model_df.iloc[0:4]
 
 
 end_final = datetime.now()
-print('data', (end2-end))
+print('class_setup_config', (end_setup_class - start_class))
+print('compare_modles', (end_class-end_setup_class))
+print('model compare', (end_final-end_setup))
 print('model_setup', (end_setup-end2))
 print('model compare', (end_final-end_setup))
 
